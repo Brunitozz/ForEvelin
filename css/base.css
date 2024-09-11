@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'typewriter';
+  src: url('/fonts/JMH\ Typewriter-Bold.ttf');
+
+}
 
 #music-player{
   position: fixed;
@@ -230,7 +235,7 @@ body {
   --color-bg-move: #fff389;
   color: var(--color-text);
   background-color: var(--color-bg);
-  font-family: fieldwork-hum, sans-serif;
+  font-family: 'typewriter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
