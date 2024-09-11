@@ -1,6 +1,42 @@
 
+#music-player{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  color: rgb(166, 255, 0);
+  padding: 10px;
+  text-align: center;
+  z-index: 1000;
+  opacity: 0.3; /* Inicialmente invisible */
+  transition: opacity 0.3s ease; /* Transición suave */
+}
 
+#music-player:hover {
+  opacity: 1; /* Hacer visible */
+}
 
+audio::-webkit-media-controls-panel {
+  background-color: #ffeb96;
+  /* background-image: url("/img/girasoles.jpg"); */
+  border-radius: 1px;
+}
+
+/* Barra de progreso */
+audio::-webkit-media-controls-timeline-container {
+  background-color: white;
+}
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display {
+  display: none;
+}
+audio::-webkit-media-controls-play-button {
+  background-color: #cfbe6b;
+  border-radius: 50%;
+}
+audio::-webkit-media-controls-volume-slider {
+  display: none;
+}
 
 /**********/
 
@@ -446,7 +482,7 @@ a:focus {
 }
 
 .item__content-text {
-  margin: 10vh 0 4rem 0;
+  margin: 3vh 0 4rem 0;
   position: relative;
   line-height: 1.5;
 }

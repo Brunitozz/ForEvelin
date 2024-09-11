@@ -364,6 +364,33 @@
         }
     }
 
+    // Reproductor de música
+    const audio = document.getElementById('audio');
+    
+    // Reproduce automáticamente la música cuando se carga la página
+
+    const playlist = [
+        'music/music1.mp3',
+        'music/music2.mp3'
+    ]
+
+    let currentSongIndex = 0;
+
+    function loadSong(index) {
+        audio.src = playlist[index];
+        audio.play().catch(error => {
+            console.error("No se pudo reproducir la música automáticamente:", error);
+        });
+    }
+    // Evento para cambiar a la siguiente canción cuando la actual termine
+    audio.addEventListener('ended', function() {
+        currentSongIndex = (currentSongIndex + 1) % playlist.length;
+        loadSong(currentSongIndex);
+    });
+
+    // Reproduce la primera canción al cargar la página
+    loadSong(currentSongIndex);
+
     // Custom mouse cursor
     const cursor = new Cursor(document.querySelector('.cursor'));
     // Content elements
