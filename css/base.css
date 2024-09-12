@@ -46,14 +46,14 @@
 }
 
 
-#music-player{
+#music-player {
   position: fixed;
   top: 0;
-  left: 0;
-  width: 100%;
+  right: 0;
+  width: auto; /* Ajustar el ancho automáticamente */
   color: rgb(166, 255, 0);
   padding: 10px;
-  text-align: center;
+  text-align: right; /* Alinear el texto a la derecha */
   z-index: 1000;
   opacity: 0.3; /* Inicialmente invisible */
   transition: opacity 0.3s ease; /* Transición suave */

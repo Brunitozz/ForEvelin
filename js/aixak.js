@@ -396,6 +396,12 @@
     // Reproduce la música del menú principal al cargar la página
     loadSong(playlist[0]);
     
+    // Repetir la canción actual cuando termine
+    audio.addEventListener('ended', function() {
+        audio.currentTime = 0;
+        audio.play();
+    });
+    
     // Custom mouse cursor
     const cursor = new Cursor(document.querySelector('.cursor'));
     // Content elements
