@@ -57,6 +57,7 @@
   z-index: 1000;
   opacity: 0.3; /* Inicialmente invisible */
   transition: opacity 0.3s ease; /* Transición suave */
+  cursor: url("/img/cursor\ \(1\).png"), auto;
 }
 
 #music-player:hover {
@@ -68,23 +69,48 @@ audio::-webkit-media-controls-panel {
   /* background-image: url("/img/girasoles.jpg"); */
   border-radius: 1px;
   box-shadow: #8C4303 5px 5px 10px;
+  cursor: url("/img/cursor\ \(1\).png"), auto;
 }
 
 /* Barra de progreso */
 audio::-webkit-media-controls-timeline-container {
   background-color: white;
+  cursor: url("/img/cursor\ \(1\).png"), auto;
 }
 audio::-webkit-media-controls-current-time-display,
 audio::-webkit-media-controls-time-remaining-display {
   display: none;
+  cursor: url("/img/cursor\ \(1\).png"), auto;
 }
+
+audio::-webkit-media-controls-panel,
+audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-mute-button,
+audio::-webkit-media-controls-timeline,
+audio::-webkit-media-controls-timeline-container,
+audio::-webkit-media-controls-current-time-display,
+audio::-webkit-media-controls-time-remaining-display,
+audio::-webkit-media-controls-seek-back-button,
+audio::-webkit-media-controls-seek-forward-button,
+audio::-webkit-media-controls-fullscreen-button,
+audio::-webkit-media-controls-volume-slider,
+audio::-webkit-media-controls-volume-slider-container,
+audio::-webkit-media-controls-enclosure,
+audio::-webkit-media-controls-overlay-enclosure,
+audio::-webkit-media-controls-toggle-closed-captions-button,
+audio::-webkit-media-controls-settings-button {
+  cursor: url("/img/cursor (1).png"), auto;
+}
+
+
 audio::-webkit-media-controls-play-button {
   background-color: var(--color-link-hover);
   border-radius: 50%;
+  cursor: url("/img/cursor\ \(1\).png"), auto;
 }
-/* audio::-webkit-media-controls-volume-slider {
-  display: none;
-} */
+audio::-webkit-media-controls-settings-button {
+  background-color: var(--color-link);
+}
 
 /**********/
 
@@ -477,7 +503,7 @@ a:focus {
 
 .menu__item:hover {
   -webkit-text-fill-color: var(--color-menu-text);
-  /text-fill-color: var(--color-menu-text); 
+  
   color: #d8e704;
   color: var(--color-menu-text);
   text-shadow: #d47018 5px 5px 5px;

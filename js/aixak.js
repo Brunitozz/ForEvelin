@@ -370,8 +370,12 @@
     // Reproduce automáticamente la música cuando se carga la página
 
     const playlist = [
+        'music/musicmain.mp3',
         'music/music1.mp3',
-        'music/music2.mp3'
+        'music/music2.mp3',
+        'music/music3.mp3',
+        'music/music4.mp3',
+        'music/music5.mp3'
     ]
 
     let currentSongIndex = 0;
