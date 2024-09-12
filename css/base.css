@@ -39,9 +39,9 @@ audio::-webkit-media-controls-play-button {
   background-color: #cfbe6b;
   border-radius: 50%;
 }
-audio::-webkit-media-controls-volume-slider {
+/* audio::-webkit-media-controls-volume-slider {
   display: none;
-}
+} */
 
 /**********/
 
@@ -418,10 +418,11 @@ a:focus {
 .menu__item {
   display: flex;
   font-weight: 800;
-  font-size: 16vw;
+  font-size: clamp(2em, 5vw, 5em); /* Tamaño mínimo 2em, dinámico 5vw, máximo 5em */
+  line-height: clamp(1.1, 2vw, 1.5);
   line-height: 1.1;
   cursor: pointer;
-  padding-bottom: 1rem;
+  padding-bottom: clamp(0.5rem, 2vw, 2rem);
   -webkit-text-stroke: 2px var(--color-menu-text);
   text-stroke: 2px var(--color-menu-text);
   /* -webkit-text-fill-color: transparent;

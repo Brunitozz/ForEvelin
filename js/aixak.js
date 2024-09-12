@@ -376,15 +376,28 @@
 
     let currentSongIndex = 0;
 
+    audio.volume = 0.1; 
+
     function loadSong(index) {
         audio.src = playlist[index];
         audio.play().catch(error => {
             console.error("No se pudo reproducir la música automáticamente:", error);
         });
     }
-    // Evento para cambiar a la siguiente canción cuando la actual termine
+
+    // Función para obtener un índice aleatorio
+    // Función para obtener un índice aleatorio
+    function getRandomSongIndex() {
+        let newIndex;
+        do {
+            newIndex = Math.floor(Math.random() * playlist.length);
+        } while (newIndex === currentSongIndex); // Evita repetir la misma canción consecutivamente
+        return newIndex;
+    }
+
+    // Evento para cambiar a una canción aleatoria cuando la actual termine
     audio.addEventListener('ended', function() {
-        currentSongIndex = (currentSongIndex + 1) % playlist.length;
+        currentSongIndex = getRandomSongIndex();
         loadSong(currentSongIndex);
     });
 
