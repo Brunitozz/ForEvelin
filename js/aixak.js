@@ -148,7 +148,7 @@
             this.lettersTotal = this.DOM.letters.length;
 
             // Total number of letters that move when hovering and moving the mouse
-            this.totalRandomLetters = 3;
+            this.totalRandomLetters = 5;
             this.totalRandomLetters = this.totalRandomLetters <= this.lettersTotal ? this.totalRandomLetters : this.lettersTotal
             // The amount that they move (y-axis)
             this.lettersTranslations = Array.from({length: this.totalRandomLetters}, _ => {
