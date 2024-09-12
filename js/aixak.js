@@ -119,14 +119,15 @@
             charming(this.DOM.title);
             this.DOM.titleLetters = [...this.DOM.title.querySelectorAll('span')];
             this.titleLettersTotal = this.DOM.titleLetters.length;
-
+    
             this.DOM.backCtrl = this.DOM.el.querySelector('.item__content-back');
             this.initEvents()
         }
         initEvents() {
             this.DOM.backCtrl.addEventListener('click', (ev) => {
                 ev.preventDefault();
-                menu.closeItem()
+                menu.closeItem();
+                loadSong('music/musicmenu.mp3'); // Reproduce la música del menú principal al cerrar el ítem
             });
         }
         setCurrent() {
@@ -136,17 +137,18 @@
             this.DOM.el.classList.remove('item--current');
         }
     }
-
+    
     // A Menu Item
     class MenuItem {
-        constructor(el) {
+        constructor(el, song) {
             this.DOM = {el: el};
-
+            this.song = song;
+    
             // Create spans out of every letter
             charming(this.DOM.el);
             this.DOM.letters = [...this.DOM.el.querySelectorAll('span')];
             this.lettersTotal = this.DOM.letters.length;
-
+    
             // Total number of letters that move when hovering and moving the mouse
             this.totalRandomLetters = 5;
             this.totalRandomLetters = this.totalRandomLetters <= this.lettersTotal ? this.totalRandomLetters : this.lettersTotal
@@ -210,13 +212,13 @@
                 }, 0.02, 0.2);
         }
     }
-
+    
     class Menu {
         constructor(el) {
             this.DOM = {el: el};
             // The menu items
             this.DOM.items = document.querySelectorAll('.menu > .menu__item');
-            this.menuItems = Array.from(this.DOM.items, item => new MenuItem(item));
+            this.menuItems = Array.from(this.DOM.items, (item, index) => new MenuItem(item, playlist[index + 1])); // Asignar canciones a los ítems del menú
             // Init/Bind events
             this.initEvents();
         }
@@ -231,7 +233,7 @@
             this.isAnimating = true;
             
             this.currentItem = this.menuItems.indexOf(menuItem);
-
+    
             // Set the content item to current
             const contentItem = contentItems[this.currentItem];
             contentItem.setCurrent();
@@ -243,7 +245,7 @@
             const duration = 1.2;
             const ease = new Ease(BezierEasing(1, 0, 0.735, 0.775));
             const columnsStagger = 0;
-
+    
             this.openItemTimeline = new TimelineMax({
                 onComplete: () => this.isAnimating = false,
             })
@@ -274,7 +276,7 @@
                 ease: ease,
                 opacity: 0
             }, 0)
-
+    
             // Animate content.first and contentMove (unreveal effect: both move in different directions)
             .to(content.first, duration*0.8, {
                 ease: Expo.easeOut,
@@ -284,7 +286,7 @@
                 ease: Expo.easeOut,
                 y: '-100%'
             }, duration+duration*columnsStagger*columnsTotal)
-
+    
             // Animate the content item title letters
             .set(contentItem.DOM.titleLetters, {
                 opacity: 0
@@ -301,13 +303,16 @@
                 rotation: 0,
                 opacity: 1
             }, -0.01, duration+duration*columnsStagger*columnsTotal);
+    
+            // Reproduce la canción específica del ítem del menú
+            loadSong(menuItem.song);
         }
         closeItem() {
             if ( this.isAnimating ) return;
             this.isAnimating = true;
-
+    
             const contentItem = contentItems[this.currentItem];
-
+    
             const duration = 1;
             const ease = Sine.easeOut;
             
@@ -326,7 +331,7 @@
                 },
                 opacity: 0
             }, 0.01, 0) 
-
+    
             // Animate content.first and contentMove (unreveal effect: both move in different directions)
             .to([content.first, contentMove], duration*0.6, {
                 ease: new Ease(BezierEasing(0.775,0.05,0.87,0.465)),
@@ -336,7 +341,7 @@
                     contentItem.resetCurrent();
                 }
             }, 0.2)
-
+    
             // Animate columns in
             .staggerTo(columnsElems, duration, {
                 ease: ease,
@@ -363,51 +368,34 @@
             }, duration);
         }
     }
-
+    
     // Reproductor de música
     const audio = document.getElementById('audio');
     
     // Reproduce automáticamente la música cuando se carga la página
-
     const playlist = [
-        'music/musicmain.mp3',
+        'music/musicmenu.mp3', // Música del menú principal
         'music/music1.mp3',
         'music/music2.mp3',
         'music/music3.mp3',
         'music/music4.mp3',
         'music/music5.mp3'
     ]
-
+    
     let currentSongIndex = 0;
-
+    
     audio.volume = 0.1; 
-
-    function loadSong(index) {
-        audio.src = playlist[index];
+    
+    function loadSong(song) {
+        audio.src = song;
         audio.play().catch(error => {
             console.error("No se pudo reproducir la música automáticamente:", error);
         });
     }
-
-    // Función para obtener un índice aleatorio
-    // Función para obtener un índice aleatorio
-    function getRandomSongIndex() {
-        let newIndex;
-        do {
-            newIndex = Math.floor(Math.random() * playlist.length);
-        } while (newIndex === currentSongIndex); // Evita repetir la misma canción consecutivamente
-        return newIndex;
-    }
-
-    // Evento para cambiar a una canción aleatoria cuando la actual termine
-    audio.addEventListener('ended', function() {
-        currentSongIndex = getRandomSongIndex();
-        loadSong(currentSongIndex);
-    });
-
-    // Reproduce la primera canción al cargar la página
-    loadSong(currentSongIndex);
-
+    
+    // Reproduce la música del menú principal al cargar la página
+    loadSong(playlist[0]);
+    
     // Custom mouse cursor
     const cursor = new Cursor(document.querySelector('.cursor'));
     // Content elements
@@ -427,17 +415,17 @@
     const columnsElems = columnsWrap.querySelectorAll('.column');
     const columnsTotal = columnsElems.length;
     let columns;
-
+    
     // The Menu
     const menu = new Menu(content.second.querySelector('.menu'));
-
+    
     // Activate the enter/leave/click methods of the custom cursor when hovering in/out on every <a> and when clicking anywhere
     [...document.querySelectorAll('a')].forEach((link) => {
         link.addEventListener('mouseenter', () => cursor.enter());
         link.addEventListener('mouseleave', () => cursor.leave());
     });
     document.addEventListener('click', () => cursor.click());
-
+    
     // Preload all the images in the page
     imagesLoaded(document.querySelectorAll('.column__img'), {background: true}, () => {
         columns = Array.from(columnsElems, column => new Column(column));       
