@@ -1,3 +1,53 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  overflow: hidden;
+  max-height: 100%;
+}
+
+.wrapper {
+  overflow: hidden;
+  height: 400px;
+  text-align: center;
+}
+
+.credit {
+  position: relative;
+  width: 400px;
+  text-align: center;
+  text-transform: uppercase;
+  animation: 30s credits linear infinite;
+  animation-delay: 1s; /* Añade un retraso de 5 segundos */
+  display: inline;
+}
+
+.movie {
+  margin-bottom: 50px;
+  font-size: 50px;
+}
+
+.job {
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+
+.name {
+  margin-bottom: 50px;
+  font-size: 30px;
+}
+
+@keyframes credits {
+  0% {
+    top: 100%;
+  }
+  100% {
+    top: -300%;
+  }
+}
+
+/***********************************************/
 @font-face {
   font-family: 'typewriter';
   src: url('/fonts/JMH Typewriter-Bold.ttf')format('truetype');
