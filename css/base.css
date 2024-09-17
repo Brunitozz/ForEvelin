@@ -1,25 +1,14 @@
-html, body {
-  height: 100%;
-}
 
-body {
-  overflow: hidden;
-  max-height: 100%;
-}
 
 .wrapper {
   overflow: hidden;
   height: 400px;
-  text-align: center;
 }
-
 .credit {
   position: relative;
   width: 400px;
   text-align: center;
-  text-transform: uppercase;
-  animation: 30s credits linear infinite;
-  animation-delay: 1s; /* Añade un retraso de 5 segundos */
+  animation: 60s credits linear infinite;
   display: inline;
 }
 
@@ -35,15 +24,15 @@ body {
 
 .name {
   margin-bottom: 50px;
-  font-size: 30px;
+  font-size: 35px;
 }
 
 @keyframes credits {
   0% {
-    top: 100%;
+      top: 100%;
   }
   100% {
-    top: -300%;
+      top: -500%;
   }
 }
 
