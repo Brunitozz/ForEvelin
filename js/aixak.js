@@ -369,6 +369,16 @@
         }
     }
     
+    const doblaje = document.getElementById('doblaje');
+    const doblajeSound = 'music/doblaje.mp3';
+
+    const doblajePlay = new Audio(doblajeSound);
+    // doblajePlay.volume = 0.5;
+
+
+    doblaje.addEventListener('mouseover', () => {
+        doblajePlay.play();
+    });
     // Reproductor de música
     const audio = document.getElementById('audio');
     
@@ -384,7 +394,7 @@
     
     let currentSongIndex = 0;
     
-    audio.volume = 0.1; 
+    audio.volume = 0.6; 
     
     function loadSong(song) {
         audio.src = song;

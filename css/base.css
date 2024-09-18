@@ -537,7 +537,7 @@ a:focus {
   /* -webkit-text-fill-color: transparent;
   text-fill-color: transparent; */
   color: var(--color-link);
-  text-shadow: #000 5px 5px 20px;
+  /* text-shadow: #000 5px 5px 20px; */
 }
 
 .menu__item:hover {
