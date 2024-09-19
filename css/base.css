@@ -2,7 +2,7 @@
 
 .wrapper {
   overflow: hidden;
-  height: 400px;
+  height: 600px;
 }
 .credit {
   position: relative;
@@ -32,7 +32,7 @@
       top: 100%;
   }
   100% {
-      top: -500%;
+      top: -600%;
   }
 }
 
